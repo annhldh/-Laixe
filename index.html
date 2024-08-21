@@ -75,30 +75,39 @@
         </table>
     </div>
     <div class="section">
-        <form>
+        <form id="address-form">
             <h3>Nơi gửi</h3>
-            <label for="province-from"> Tỉnh/Thành phố</label>
-            <select id="province-from" name="province-from" required>
+            <div><label for="province-from"> Tỉnh/Thành phố</label>
+                <select id="province-from" name="province-from" required>
+    
+                </select>
+            </div>
+            <div> <label for="district-from"> Quận/Huyện/Thị xã</label>
+                <select id="district-from" name="district-from" required>
+                <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
+                 </select>
+                 <h3>Nơi nhận</h3>
+                 <label for="province-to"> Tỉnh/Thành phố</label>
+                 <select id="province-to" name="province-to" required>
+     
+     
+                 </select>
+            </div>
 
-
-            </select>
-
-            <label for="district-from"> Quận/Huyện/Thị xã</label>
-            <select id="district-from" name="district-from" required>
-            <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
-             </select>
-             <h3>Nơi nhận</h3>
-             <label for="province-to"> Tỉnh/Thành phố</label>
-             <select id="province-to" name="province-to" required>
- 
- 
-             </select>
+           
  
              <label for="district-to"> Quận/Huyện/Thị xã</label>
              <select id="district-to" name="district-to" required>
              <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
               </select>
+              <div>
+              <button type="button" onclick="calculateDistance()">Xác nhận</button>
+              </div>
+
+
+            
         </form>
+        <p id="result"></p>
     </div>
 
 
@@ -219,6 +228,36 @@
             updateDistricts('province-from', 'district-from');
             updateDistricts('province-to', 'district-to');
         });
+
+        async function getCoordinates(address) {
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`);
+            const data = await response.json();
+            if (data.length > 0) {
+                return {
+                    lat: data[0].lat,
+                    lon: data[0].lon
+                };
+            }
+            return null;
+        }
+
+        async function calculateDistance() {
+            const startAddress = document.getElementById('start-address').value;
+            const endAddress = document.getElementById('end-address').value;
+
+            const startCoordinates = await getCoordinates(startAddress);
+            const endCoordinates = await getCoordinates(endAddress);
+
+            if (startCoordinates && endCoordinates) {
+                const response = await fetch(`http://router.project-osrm.org/route/v1/driving/${startCoordinates.lon},${startCoordinates.lat};${endCoordinates.lon},${endCoordinates.lat}?overview=false`);
+                const data = await response.json();
+                const distance = data.routes[0].distance / 1000; // Convert meters to kilometers
+
+                document.getElementById('result').textContent = `Khoảng cách: ${distance.toFixed(2)} km`;
+            } else {
+                document.getElementById('result').textContent = 'Không thể tìm được tọa độ cho địa chỉ.';
+            }
+        }
      </script>
 
 </body>
