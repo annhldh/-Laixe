@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Dịch vụ vận chuyển online</title>
+
+
+</head>
+<body>
+    <h1>Dịch vụ vận tải </h1>
+    <div class="section">
+    <div class="left-right-content">
+        <div class="left-content">
+            <ul>
+                <li>Lê Đức Nhất</li>
+                <li>Vận tải 7 tấn toàn miền Bắc</li>
+                <li>Địa chỉ: <a href="https://www.google.com/maps/@21.1156992,106.266624,15z?entry=ttu">Bắc Ninh</a></li>
+            </ul>
+        
+        </div>
+        <div class="right-content">
+            <img src="https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black-thumbnail.png">
+        </div>
+    </div>
+    </div>
+    <div class="section">
+    <div class="left-right-content">
+        <div class="left-content">
+            <table>
+                <tr>
+                    <td>Trọng tải thiết kế</td>
+                    <td> 7 tấn </td>
+
+                </tr>
+                <tr>
+                    <td>Hãng</td>
+                    <td>Isuzu</td>
+                    
+                </tr>
+                <tr>
+                    <td>Kích thước thùng xe</td>
+                    <td>6m x 2.1m x 2m</td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="right-content">
+            <img src="https://xetaiisuzuhcm.com/wp-content/uploads/2019/06/Xe-t%E1%BA%A3i-isuzu-7-t%E1%BA%A5n-3.jpg">
+        </div>
+    </div>
+    </div>
+    <div class="section">
+        <h3>Liên hệ ngay</h3>
+        <table>
+            <tr>
+                <td><img src="https://t4.ftcdn.net/jpg/06/11/74/07/360_F_611740702_pef349OBjBFuoVbncULZAmVfTXZty5Kn.jpg" class="icon"></td>
+                <td>0962182277</td>
+                 
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.facebook.com/profile.php?id=100025901166779">
+                        <img class="icon" src ="https://i.pinimg.com/originals/ee/28/3a/ee283a1348a90c6db74c2937493fce74.png" >
+                    </a>
+                </td>
+                <td>
+                    <a>
+                        <img class="icon" src="https://zaloweb.me/wp-content/uploads/2022/01/zalo-web.jpg">
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="section">
+        <form>
+            <h3>Nơi gửi</h3>
+            <label for="province-from"> Tỉnh/Thành phố</label>
+            <select id="province-from" name="province-from" required>
+
+
+            </select>
+
+            <label for="district-from"> Quận/Huyện/Thị xã</label>
+            <select id="district-from" name="district-from" required>
+            <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
+             </select>
+        </form>
+    </div>
+
+
+    <script>
+   
+        
+        // Mảng chứa các tỉnh/thành phố
+        const provinces = [
+            "An Giang", "Bà Rịa - Vũng Tàu", "Bạc Liêu", "Bắc Giang", "Bắc Kạn", "Bắc Ninh", 
+            "Bến Tre", "Bình Dương", "Bình Định", "Bình Phước", "Bình Thuận", "Cà Mau", 
+            "Cao Bằng", "Cần Thơ", "Đà Nẵng", "Đắk Lắk", "Đắk Nông", "Điện Biên", 
+            "Đồng Nai", "Đồng Tháp", "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", 
+            "Hà Tĩnh", "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên", 
+            "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng", "Lạng Sơn", 
+            "Lào Cai", "Long An", "Nam Định", "Nghệ An", "Ninh Bình", "Ninh Thuận", 
+            "Phú Thọ", "Phú Yên", "Quảng Bình", "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", 
+            "Quảng Trị", "Sóc Trăng", "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", 
+            "Thanh Hóa", "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh", 
+            "Tuyên Quang", "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
+        ];
+
+        // Đối tượng chứa danh sách các quận/huyện/thị xã cho từng tỉnh/thành phố
+        const districts = {
+            "An Giang": ["Long Xuyên", "Châu Đốc", "Tân Châu", "An Phú", "Châu Phú", "Châu Thành", "Phú Tân", "Thoại Sơn", "Tịnh Biên", "Tri Tôn"],
+            "Bà Rịa - Vũng Tàu": ["Bà Rịa", "Vũng Tàu", "Châu Đức", "Côn Đảo", "Đất Đỏ", "Long Điền", "Phú Mỹ", "Xuyên Mộc"],
+            "Bạc Liêu": ["Bạc Liêu", "Giá Rai", "Đông Hải", "Hoà Bình", "Hồng Dân", "Phước Long", "Vĩnh Lợi"],
+            "Bắc Giang": ["Bắc Giang", "Hiệp Hoà", "Lạng Giang", "Lục Nam", "Lục Ngạn", "Sơn Động", "Tân Yên", "Việt Yên", "Yên Dũng", "Yên Thế"],
+            "Bắc Kạn": ["Bắc Kạn", "Ba Bể", "Bạch Thông", "Chợ Đồn", "Chợ Mới", "Na Rì", "Ngân Sơn", "Pác Nặm"],
+            "Bắc Ninh": ["Bắc Ninh", "Gia Bình", "Lương Tài", "Quế Võ", "Thuận Thành", "Tiên Du", "Từ Sơn", "Yên Phong"],
+            "Bến Tre": ["Bến Tre", "Ba Tri", "Bình Đại", "Châu Thành", "Chợ Lách", "Giồng Trôm", "Mỏ Cày Bắc", "Mỏ Cày Nam", "Thạnh Phú"],
+            "Bình Dương": ["Thủ Dầu Một", "Bàu Bàng", "Bến Cát", "Dầu Tiếng", "Dĩ An", "Phú Giáo", "Tân Uyên", "Thuận An"],
+            "Bình Định": ["Quy Nhơn", "An Lão", "An Nhơn", "Hoài Ân", "Hoài Nhơn", "Phù Cát", "Phù Mỹ", "Tây Sơn", "Tuy Phước", "Vân Canh", "Vĩnh Thạnh"],
+            "Bình Phước": ["Đồng Xoài", "Bình Long", "Bù Đăng", "Bù Đốp", "Bù Gia Mập", "Chơn Thành", "Đồng Phú", "Hớn Quản", "Lộc Ninh", "Phước Long", "Phú Riềng"],
+            "Bình Thuận": ["Phan Thiết", "La Gi", "Bắc Bình", "Đức Linh", "Hàm Tân", "Hàm Thuận Bắc", "Hàm Thuận Nam", "Phú Quí", "Tánh Linh", "Tuy Phong"],
+            "Cà Mau": ["Cà Mau", "Cái Nước", "Đầm Dơi", "Năm Căn", "Ngọc Hiển", "Phú Tân", "Thới Bình", "Trần Văn Thời", "U Minh"],
+            "Cao Bằng": ["Cao Bằng", "Bảo Lạc", "Bảo Lâm", "Hạ Lang", "Hà Quảng", "Hoà An", "Nguyên Bình", "Phục Hoà", "Quảng Hoà", "Thạch An", "Trùng Khánh"],
+            "Cần Thơ": ["Ninh Kiều", "Bình Thuỷ", "Cái Răng", "Ô Môn", "Phong Điền", "Thốt Nốt", "Thới Lai", "Cờ Đỏ", "Vĩnh Thạnh"],
+            "Đà Nẵng": ["Hải Châu", "Cẩm Lệ", "Liên Chiểu", "Ngũ Hành Sơn", "Sơn Trà", "Thanh Khê", "Hoà Vang", "Hoàng Sa"],
+            "Đắk Lắk": ["Buôn Ma Thuột", "Buôn Đôn", "Cư Kuin", "Cư M'gar", "Ea H'leo", "Ea Kar", "Ea Súp", "Krông Ana", "Krông Bông", "Krông Buk", "Krông Năng", "Krông Pắk", "Lắk", "M'Drắk"],
+            "Đắk Nông": ["Gia Nghĩa", "Cư Jút", "Đắk Glong", "Đắk Mil", "Đắk R'Lấp", "Đắk Song", "Krông Nô", "Tuy Đức"],
+            "Điện Biên": ["Điện Biên Phủ", "Mường Lay", "Điện Biên", "Điện Biên Đông", "Mường Ảng", "Mường Chà", "Mường Nhé", "Nậm Pồ", "Tủa Chùa", "Tuần Giáo"],
+            "Đồng Nai": ["Biên Hoà", "Long Khánh", "Cẩm Mỹ", "Định Quán", "Long Thành", "Nhơn Trạch", "Tân Phú", "Thống Nhất", "Trảng Bom", "Vĩnh Cửu", "Xuân Lộc"],
+            "Đồng Tháp": ["Cao Lãnh", "Sa Đéc", "Hồng Ngự", "Châu Thành", "Hồng Ngự", "Lai Vung", "Lấp Vò", "Tam Nông", "Tân Hồng", "Thanh Bình", "Tháp Mười"],
+            "Gia Lai": ["Pleiku", "An Khê", "Ayun Pa", "Chư Păh", "Chư Prông", "Chư Sê", "Đăk Đoa", "Đăk Pơ", "Đức Cơ", "Ia Grai", "Ia Pa", "KBang", "Kông Chro", "Krông Pa", "Mang Yang", "Phú Thiện"],
+            "Hà Giang": ["Hà Giang", "Bắc Mê", "Bắc Quang", "Đồng Văn", "Hoàng Su Phì", "Mèo Vạc" ,"Quản Bạ", "Quang Bình", "Vị Xuyên", "Xín Mần", "Yên Minh"],
+            "Hải Phòng": ["Hải An", "Dương Kinh", "Đồ Sơn", "Hồng Bàng", "Kiến An", "Lê Chân", "Ngô Quyền", "An Dương", "An Lão", "Bạch Long Vĩ", "Cát Hải", "Kiến Thuỵ", "Thuỷ Nguyên", "Tiên Lãng", "Vĩnh Bảo"],
+            "Hậu Giang": ["Vị Thanh", "Ngã Bảy", "Long Mỹ", "Châu Thành", "Châu Thành A", "Long Mỹ", "Phụng Hiệp", "Vị Thuỷ"],
+            "Hòa Bình": ["Hoà Bình", "Cao Phong", "Đà Bắc", "Kim Bôi", "Kỳ Sơn", "Lạc Sơn", "Lạc Thuỷ", "Lương Sơn", "Mai Châu", "Tân Lạc", "Yên Thuỷ"],
+            "Hưng Yên": ["Hưng Yên", "Ân Thi", "Khoái Châu", "Kim Động", "Mỹ Hào", "Phù Cừ", "Tiên Lữ", "Văn Giang", "Văn Lâm", "Yên Mỹ"],
+            "Khánh Hòa": ["Nha Trang", "Cam Ranh", "Ninh Hoà", "Diên Khánh", "Khánh Sơn", "Khánh Vĩnh", "Trường Sa", "Vạn Ninh", "Cam Lâm"],
+            "Kiên Giang": ["Rạch Giá", "Hà Tiên", "An Biên", "An Minh", "Châu Thành", "Giang Thành", "Giồng Riềng", "Gò Quao", "Hòn Đất", "Kiên Hải", "Kiên Lương", "Phú Quốc", "Tây An", "Tân Hiệp"],
+            "Kon Tum": ["Kon Tum", "Đăk Hà", "Đăk Glei", "Đăk Tô", "Đăk Pơ", "Kon Plong", "Kon Rẫy", "Ngọc Hồi", "Sa Thầy", "Tu Mơ Rông"],
+            "Lai Châu": ["Lai Châu", "Tam Đường", "Phong Thổ", "Sìn Hồ", "Mường Tè", "Nậm Nhùn", "Tân Uyên", "Than Uyên", "Lai Châu"],
+            "Lâm Đồng": ["Đà Lạt", "Bảo Lộc", "Bảo Lâm", "Di Linh", "Đạ Huoai", "Đạ Tẻh", "Đam Rông", "Lâm Hà", "Lộc An", "Lộc Bình", "Lộc Nam"],
+            "Lạng Sơn": ["Lạng Sơn", "Cao Lộc", "Hữu Lũng", "Lộc Bình", "Mẫu Sơn", "Nà Chu", "Phong Sâu", "Quảng Lạc", "Văn Lãng"],
+            "Lào Cai": ["Lào Cai", "Bát Xát", "Bắc Hà", "Mường Khương", "Sa Pa", "Văn Bàn", "Văn Yên", "Lào Cai"],
+            "Long An": ["Tân An", "Bến Lức", "Cần Đước", "Cần Giuộc", "Châu Thành", "Đức Hoà", "Đức Huệ", "Thạnh Hoá", "Tân Trụ", "Tân Thạnh", "Vĩnh Hưng"],
+            "Nam Định": ["Nam Định", "Giao Thủy", "Hải Hậu", "Ý Yên", "Vụ Bản", "Đại An", "Nghĩa Hưng", "Trực Ninh", "Xuân Trường", "Kim Sơn"],
+            "Nghệ An": ["Vinh", "Cửa Lò", "Con Cuông", "Diễn Châu", "Hưng Nguyên", "Kỳ Sơn", "Quế Phong", "Quỳ Châu", "Quỳ Hợp", "Tân Kỳ", "Thanh Chương", "Yên Thành"],
+            "Ninh Bình": ["Ninh Bình", "Nho Quan", "Gia Viễn", "Hoa Lư", "Kim Sơn", "Yên Khánh", "Yên Mô", "Ninh Phúc"],
+            "Ninh Thuận": ["Phan Rang - Tháp Chàm", "Bác Ái", "Cà Ná", "Cái Bè", "Ninh Hải", "Ninh Phước", "Thuận Bắc", "Thuận Nam"],
+            "Phú Thọ": ["Việt Trì", "Cẩm Khê", "Đoan Hùng", "Hạ Hòa", "Lâm Thao", "Phù Ninh", "Tân Sơn", "Thanh Ba", "Thanh Sơn", "Thanh Thuỷ"],
+            "Phú Yên": ["Tuy Hoà", "Sông Cầu", "Tuy An", "Đồng Xuân", "Sơn Hoà", "Sông Hinh", "Tây Hoà", "Phú Hoà"],
+            "Quảng Bình": ["Đồng Hới", "Bố Trạch", "Quảng Trạch", "Lệ Thủy", "Tuyên Hóa", "Minh Hóa", "Quảng Ninh"],
+            "Quảng Nam": ["Tam Kỳ", "Hội An", "Duy Xuyên", "Điện Bàn", "Hương An", "Hương Thuỷ", "Quế Sơn", "Tiên Phước", "Nam Giang"],
+            "Quảng Ngãi": ["Quảng Ngãi", "Lý Sơn", "Sơn Tịnh", "Tư Nghĩa", "Mộ Đức", "Đức Phổ", "Ba Tơ", "Sơn Hà", "Sơn Tây", "Trà Bồng"],
+            "Quảng Ninh": ["Hạ Long", "Móng Cái", "Uông Bí", "Cẩm Phả", "Đông Triều", "Quảng Yên", "Tiên Yên", "Bình Liêu", "Vân Đồn", "Đầm Hà"],
+            "Quảng Trị": ["Đông Hà", "Quảng Trị", "Hướng Hóa", "Gio Linh", "Vĩnh Linh", "Cam Lộ", "Triệu Phong"],
+            "Sóc Trăng": ["Sóc Trăng", "Châu Thành", "Kế Sách", "Long Phú", "Ngã Năm", "Ngọc Hiển", "Thạnh Trị", "Trần Đề", "Vĩnh Châu"],
+            "Sơn La": ["Sơn La", "Mộc Châu", "Mai Sơn", "Yên Châu", "Sông Mã", "Vân Hồ", "Phù Yên", "Sơn La", "Sốp Cộp"],
+            "Tây Ninh": ["Tây Ninh", "Hoà Thành", "Hoà Đô", "Dương Minh Châu", "Gò Dầu", "Châu Thành", "Tân Châu"],
+            "Thái Bình": ["Thái Bình", "Hưng Hà", "Quỳnh Phụ", "Vũ Thư", "Đông Hưng", "Tiền Hải", "Thái Thụy", "Phú Xuyên", "Kiến Xương"],
+            "Thái Nguyên": ["Thái Nguyên", "Sông Công", "Phổ Yên", "Đại Từ", "Đồng Hỷ", "Phú Lương", "Võ Nhai", "Định Hoá"],
+            "Thanh Hóa": ["Thanh Hóa", "Sầm Sơn", "Hà Trung", "Hoằng Hóa", "Quảng Xương", "Triệu Sơn", "Yên Định", "Mường Lát", "Cẩm Thủy"],
+            "Thừa Thiên Huế": ["Huế", "Phú Vang", "Phú Lộc", "Quảng Điền", "A Lưới", "Hương Thủy", "Hương Trà"],
+            "Tiền Giang": ["Mỹ Tho", "Gò Công", "Cai Lậy", "Châu Thành", "Chợ Gạo", "Tân Phú Đông", "Tân Phước", "Cái Bè"],
+            "TP. Hồ Chí Minh": ["TP. Hồ Chí Minh", "Quận 1", "Quận 2", "Quận 3", "Quận 4", "Quận 5", "Quận 6", "Quận 7", "Quận 8", "Quận 9", "Quận 10", "Quận 11", "Quận 12", "Bình Thạnh", "Tân Bình", "Tân Phú", "Gò Vấp", "Phú Nhuận", "Bình Tân", "Hóc Môn", "Củ Chi", "Nhà Bè", "Bình Chánh"],
+            "Trà Vinh": ["Trà Vinh", "Cầu Kè", "Cầu Ngang", "Châu Thành", "Duyên Hải", "Tiểu Cần", "Vũng Liêm", "Trà Cú", "Long Trị"],
+            "Tuyên Quang": ["Tuyên Quang", "Chiêm Hóa", "Hàm Yên", "Lâm Bình", "Na Hang", "Sơn Dương", "Yên Sơn"],
+            "Vĩnh Long": ["Vĩnh Long", "Bình Minh", "Long Hồ", "Mang Thít", "Tam Bình", "Trà Ôn", "Vũng Liêm", "Vũng Liêm"],
+            "Vĩnh Phúc": ["Vĩnh Yên", "Phúc Yên", "Vĩnh Tường", "Tam Đảo", "Tam Dương", "Lập Thạch", "Sông Lô"],
+            "Yên Bái": ["Yên Bái", "Lục Yên", "Mù Cang Chải", "Văn Chấn", "Văn Yên", "Trấn Yên", "Yên Bình"]
+        };
+
+        // Hàm chèn các tỉnh/thành phố vào menu chọn
+        function populateProvinces() {
+            const provinceSelect = document.getElementById('province-from');
+            provinceSelect.innerHTML = provinces.map(province => `<option value="${province}">${province}</option>`).join('');
+        }
+
+        // Hàm cập nhật quận/huyện/thị xã dựa trên tỉnh/thành phố được chọn
+        function updateDistricts() {
+            const provinceSelect = document.getElementById('province-from');
+            const districtSelect = document.getElementById('district-from');
+            const selectedProvince = provinceSelect.value;
+            districtSelect.innerHTML = districts[selectedProvince] ? 
+                districts[selectedProvince].map(district => `<option value="${district}">${district}</option>`).join('') : 
+                '<option value="">Chọn quận/huyện/thị xã</option>';
+        }
+
+        // Khởi tạo danh sách các tỉnh/thành phố khi trang được tải
+        window.onload = function() {
+            populateProvinces();
+            // Gán sự kiện thay đổi cho tỉnh/thành phố để cập nhật quận/huyện/thị xã
+            document.getElementById('province-from').addEventListener('change', updateDistricts);
+        };
+     </script>
+
+</body>
+</html>
