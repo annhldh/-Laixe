@@ -87,6 +87,17 @@
             <select id="district-from" name="district-from" required>
             <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
              </select>
+             <h3>Nơi nhận</h3>
+             <label for="province-to"> Tỉnh/Thành phố</label>
+             <select id="province-to" name="province-to" required>
+ 
+ 
+             </select>
+ 
+             <label for="district-to"> Quận/Huyện/Thị xã</label>
+             <select id="district-to" name="district-to" required>
+             <!-- Quận/Huyện/Thị xã sẽ được cập nhật dựa trên Tỉnh/Thành phố -->
+              </select>
         </form>
     </div>
 
@@ -171,29 +182,43 @@
             "Vĩnh Phúc": ["Vĩnh Yên", "Phúc Yên", "Vĩnh Tường", "Tam Đảo", "Tam Dương", "Lập Thạch", "Sông Lô"],
             "Yên Bái": ["Yên Bái", "Lục Yên", "Mù Cang Chải", "Văn Chấn", "Văn Yên", "Trấn Yên", "Yên Bình"]
         };
+        function populateSelect(elementId, options) {
+            const selectElement = document.getElementById(elementId);
+            selectElement.innerHTML = ''; // Xóa các tùy chọn hiện tại
 
-        // Hàm chèn các tỉnh/thành phố vào menu chọn
-        function populateProvinces() {
-            const provinceSelect = document.getElementById('province-from');
-            provinceSelect.innerHTML = provinces.map(province => `<option value="${province}">${province}</option>`).join('');
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option;
+                selectElement.appendChild(opt);
+            });
         }
 
-        // Hàm cập nhật quận/huyện/thị xã dựa trên tỉnh/thành phố được chọn
-        function updateDistricts() {
-            const provinceSelect = document.getElementById('province-from');
-            const districtSelect = document.getElementById('district-from');
-            const selectedProvince = provinceSelect.value;
-            districtSelect.innerHTML = districts[selectedProvince] ? 
-                districts[selectedProvince].map(district => `<option value="${district}">${district}</option>`).join('') : 
-                '<option value="">Chọn quận/huyện/thị xã</option>';
+        // Hàm cập nhật quận/huyện/thị xã dựa trên tỉnh/thành phố
+        function updateDistricts(provinceSelectId, districtSelectId) {
+            const provinceSelect = document.getElementById(provinceSelectId);
+            const districtSelect = document.getElementById(districtSelectId);
+
+            provinceSelect.addEventListener('change', function() {
+                const selectedProvince = this.value;
+                const districtsOptions = districts[selectedProvince] || [];
+                populateSelect(districtSelectId, districtsOptions);
+            });
         }
 
-        // Khởi tạo danh sách các tỉnh/thành phố khi trang được tải
-        window.onload = function() {
-            populateProvinces();
-            // Gán sự kiện thay đổi cho tỉnh/thành phố để cập nhật quận/huyện/thị xã
-            document.getElementById('province-from').addEventListener('change', updateDistricts);
-        };
+        // Hàm khởi tạo tỉnh/thành phố vào select box
+        function initializeProvinces() {
+            const provinceOptions = provinces;
+            populateSelect('province-from', provinceOptions);
+            populateSelect('province-to', provinceOptions);
+        }
+
+        // Gọi các hàm khởi tạo khi trang tải xong
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProvinces();
+            updateDistricts('province-from', 'district-from');
+            updateDistricts('province-to', 'district-to');
+        });
      </script>
 
 </body>

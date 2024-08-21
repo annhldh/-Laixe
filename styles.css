@@ -62,12 +62,13 @@ table
 }
 
 @media (max-width: 768px) {
-    .left-right-content {
-        flex-direction: column;
+
+    .left-content{
+        
+        width: 70%; 
     }
-    .left-content, .right-content {
-        flex: none; /* Hủy bỏ flex properties */
-        width: 100%; /* Chiếm toàn bộ chiều rộng */
+    .right-content {
+        width:30%;
     }
     .icon {
         width: 50%; /* Hoặc giá trị khác phù hợp với màn hình nhỏ */
