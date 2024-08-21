@@ -75,6 +75,7 @@
         </table>
     </div>
     <div class="section">
+        <h2>Máy tính gía cước tương đối</h2>
         <form id="address-form">
             <h3>Nơi gửi</h3>
             <div><label for="province-from"> Tỉnh/Thành phố</label>
@@ -263,9 +264,23 @@
                 try {
                     const response = await fetch(`https://router.project-osrm.org/route/v1/driving/${startCoordinates.lon},${startCoordinates.lat};${endCoordinates.lon},${endCoordinates.lat}?overview=false`);
                     const data = await response.json();
-                    const distance = data.routes[0].distance / 1000; // Convert meters to kilometers
 
-                    document.getElementById('result').textContent = `Khoảng cách: ${distance.toFixed(2)} km`;
+                    const distance = data.routes[0].distance / 1000; // Convert meters to kilometers
+                            let totalCost = 0;
+                    if (distance <= 10) {
+                        totalCost = distance * 50000;
+                    } else if (distance <= 50) {
+                        totalCost = (10 * 50000) + ((distance - 10) * 40000);
+                    } else if (distance <= 100) {
+                        totalCost = (10 * 50000) + (40 * 40000) + ((distance - 50) * 30000);
+                    } else {
+                        totalCost = (10 * 50000) + (40 * 40000) + (50 * 30000) + ((distance - 100) * 25000);
+                    }
+
+                    // Hiển thị khoảng cách và cước phí dự kiến
+                    document.getElementById('result').textContent = `Khoảng cách: ${distance.toFixed(2)} km. Cước phí dự kiến: ${totalCost.toLocaleString('vi-VN')} VND (Cước phí thực tế liên hệ để cung cấp thêm thông tin về địa chỉ và tính toán chi tiết)`;
+
+                
                 } catch (error) {
                     console.error("Error fetching route:", error);
                     document.getElementById('result').textContent = 'Lỗi khi tính khoảng cách.';
