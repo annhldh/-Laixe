@@ -26,25 +26,24 @@ li,table
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 4vw;
+    padding-right: 1vw;
 }
 
 .left-content {
     flex: 6;
     margin-right: 20px;
 
-    
 }
 
+
 .right-content {
-    flex:3;
+    flex: 4;
     text-align: center;
-   
-   
 }
-.right-content img{
-    width: 100%;
-}
+
+
+
 table
 {
     margin-left: 5%;
@@ -52,12 +51,30 @@ table
 
 .section
 {
-    padding:5vw;
+    
     border-radius: 3vw;
-    background-color: white;
+    background-image: url("img/back-section.png");
     box-shadow: 0px 0px 3vw 1vw rgb(51, 47, 50,0.6);
     margin-top: 9vw;
+    background-size: 100% 100%; /* Đảm bảo ảnh nền bao phủ toàn bộ phần tử */
+    background-repeat: no-repeat; /* Ngăn không cho lặp lại ảnh nền */
+    background-position: center; /* Đặt ảnh nền ở giữa */
 }
+.right-content img
+{
+        padding:0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('https://xetaiisuzuhcm.com/wp-content/uploads/2019/06/Xe-t%E1%BA%A3i-isuzu-7-t%E1%BA%A5n-3.jpg'); /* Đường dẫn đến hình ảnh */
+        background-size: cover;
+        background-position: center;
+        clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%); /* Cắt hình ảnh để lấp đầy phần màu xanh */
+
+}
+
 .icon
 {
     width: 10vw;
@@ -66,14 +83,15 @@ table
 
 }
 
+
 @media (max-width: 768px) {
 
     .left-content{
         
-        width: 70%; 
+        width: 60%; 
     }
     .right-content {
-        width:30%;
+        width:40%;
     }
     .icon {
         width: 50%; /* Hoặc giá trị khác phù hợp với màn hình nhỏ */
@@ -81,6 +99,7 @@ table
 }
 form
 {
+    padding: 5vw;
     font-size:  clamp(0.7rem, 3vw, 3rem);
 
 }
@@ -88,4 +107,46 @@ select
 {
     height:  clamp(0.7rem, 3vw, 3rem);
     width:auto;
+}
+
+
+.image-gallery {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 9vw;
+}
+
+.image-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }

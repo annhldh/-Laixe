@@ -19,8 +19,9 @@
                 <li>Vận tải 7 tấn toàn miền Bắc, chuyên vận chuyển VLXD, Nội thất,...</li>
                 <li>Địa chỉ: <a href="https://www.google.com/maps/@21.1156992,106.266624,15z?entry=ttu">Cầu Hồ,Bắc Ninh</a></li>
             </ul>
-        
+ 
         </div>
+        
         <div class="right-content">
             <img src="https://w7.pngwing.com/pngs/613/636/png-transparent-computer-icons-user-profile-male-avatar-avatar-heroes-logo-black-thumbnail.png">
         </div>
@@ -48,10 +49,16 @@
             </table>
         </div>
         <div class="right-content">
-            <img src="https://xetaiisuzuhcm.com/wp-content/uploads/2019/06/Xe-t%E1%BA%A3i-isuzu-7-t%E1%BA%A5n-3.jpg">
+            <img src="https://www.isuzumienbac.com/User_folder_upload/admin/images/SAN%20PHAM/FRR90LE4/isuzu-7t-frr650-mui-bat.jpg">
         </div>
     </div>
     </div>
+    <div class="image-gallery">
+        <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+        <img id="gallery-image" src="https://xetaiisuzuhcm.com/wp-content/uploads/2019/05/Xe-t%E1%BA%A3i-Isuzu-9-t%E1%BA%A5n.jpg" alt="Gallery Image">
+        <button class="next" onclick="changeImage(1)">&#10095;</button>
+    </div>
+    
     <div class="section">
         <h3>Liên hệ ngay</h3>
         <table>
@@ -1902,6 +1909,25 @@ async function calculateDistance() {
 
         
    
+     </script>
+     <script>
+        let currentImageIndex = 0;
+const images = ["https://www.isuzumienbac.com/User_folder_upload/admin/images/SAN%20PHAM/FRR90LE4/isuzu-7t-frr650-mui-bat.jpg", 
+                "https://www.isuzumienbac.com/User_folder_upload/admin/images/SAN%20PHAM/FRR90LE4/isuzu-7t-frr650-mui-bat.jpg", 
+                "https://www.isuzumienbac.com/User_folder_upload/admin/images/SAN%20PHAM/FRR90LE4/isuzu-7t-frr650-mui-bat.jpg"]; // Thay thế bằng danh sách đường dẫn đến hình ảnh của bạn
+
+function changeImage(direction) {
+    currentImageIndex += direction;
+
+    if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+    } else if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+    }
+
+    document.getElementById("gallery-image").src = images[currentImageIndex];
+}
+
      </script>
 
 </body>
