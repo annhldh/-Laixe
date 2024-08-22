@@ -79,3 +79,13 @@ table
         width: 50%; /* Hoặc giá trị khác phù hợp với màn hình nhỏ */
     }
 }
+form
+{
+    font-size:  clamp(0.7rem, 3vw, 3rem);
+
+}
+select
+{
+    height:  clamp(0.7rem, 3vw, 3rem);
+    width:auto;
+}
