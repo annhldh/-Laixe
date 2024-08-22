@@ -729,7 +729,7 @@
         "Huyện Long Mỹ",
         "Huyện Phụng Hiệp",
         "Huyện Vị Thủy",
-        "Huyện Vị Thanh",
+        "Thị xã Vị Thanh",
         "Thành phố Vị Thanh"
     ],
     "Tỉnh Tiền Giang": [
@@ -1712,7 +1712,7 @@
 "Huyện Phong Điền":["Phong Điền","Nhơn Ái","Giai Xuân","Tân Thới","Trường Long","Mỹ Khánh","Nhơn Nghĩa", "..."],
 "Huyện Thới Lai":["Thới Lai","Thới Thạnh","Tân Thạnh","Xuân Thắng","Đông Bình","Đông Thuận","Thới Tân","Trường Thắng","Định Môn","Trường Thành","Trường Xuân","Trường Xuân A","Trường Xuân B", "..."],
 "Thành phố Vị Thanh":["I","III","IV","V","VII","Vị Tân","Hoả Lựu","Tân Tiến","Hoả Tiến", "..."],
-"Thành phố Ngã Bảy":["Ngã Bảy","Lái Hiếu","Hiệp Thành","Hiệp Lợi","Đại Thành","Tân Thành", "..."],
+"Thị xã Ngã Bảy":["Ngã Bảy","Lái Hiếu","Hiệp Thành","Hiệp Lợi","Đại Thành","Tân Thành", "..."],
 "Huyện Châu Thành A":["Một Ngàn","Tân Hoà","Bảy Ngàn","Trường Long Tây","Trường Long A","Nhơn Nghĩa A","Rạch Gòi","Thạnh Xuân","Cái Tắc","Tân Phú Thạnh", "..."],
 "Huyện Châu Thành":["Ngã Sáu","Đông Thạnh","Đông Phú","Phú Hữu","Phú Tân","Mái Dầm","Đông Phước","Đông Phước A", "..."],
 "Huyện Phụng Hiệp":["Kinh Cùng","Cây Dương","Tân Bình","Bình Thành","Thạnh Hòa","Long Thạnh","Phụng Hiệp","Hòa Mỹ","Hòa An","Phương Bình","Hiệp Hưng","Tân Phước Hưng","Búng Tàu","Phương Phú","Tân Long", "..."],
@@ -1821,7 +1821,12 @@ document.addEventListener('DOMContentLoaded', function() {
     updateDistricts('province-from', 'district-from', 'ward-from');
     updateDistricts('province-to', 'district-to', 'ward-to');
 });
-
+document.addEventListener('DOMContentLoaded', function() {
+  var selectElement = document.getElementById('province-from');
+  selectElement.selectedIndex = 0; // Đặt chỉ mục lựa chọn mặc định là 0 (phần tử đầu tiên)
+  var selectElement = document.getElementById('province-to');
+  selectElement.selectedIndex = 0; // Đặt chỉ mục lựa chọn mặc định là 0 (phần tử đầu tiên)
+});
 // Lấy tọa độ từ địa chỉ sử dụng OpenStreetMap
 async function getCoordinates(address) {
     try {
