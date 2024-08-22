@@ -1650,20 +1650,21 @@ async function calculateDistance() {
             const distance = data.routes[0].distance / 1000; // Convert meters to kilometers
 
             // Tính cước phí theo bậc thang
-            let totalCost = 0;
-            if (distance <= 20) {
-                totalCost = cost['payload'][0];
-            } else if (distance <= 30) {
-                totalCost =cost['payload'][0] + ((distance - 20) * cost['payload'][1]);
-            } else if (distance <= 50) {
-                totalCost = cost['payload'][0] + ((distance - 20) * cost['payload'][1]) + (distance-50) *cost['payload'][2];
-            } else if(distance<=100) {
-                totalCost = cost['payload'][0] + ((distance - 20) * cost['payload'][1]) + (distance-50) *cost['payload'][2] + (distance-50)*cost['payload'][3];
-            }
-            else{
-                totalCost = cost['payload'][0] + ((distance - 20) * cost['payload'][1]) + (distance-50) *cost['payload'][2] + (distance-50)*cost['payload'][3] + (distance-100) * cost['payload'][4];
-            }
+            const payloadIndex = document.getElementById('payload').value;
+    
+        let totalCost = 0;
 
+        if (distance <= 20) {
+            totalCost = cost[payloadIndex][0];
+        } else if (distance <= 30) {
+            totalCost = cost[payloadIndex][0] + ((distance - 20) * cost[payloadIndex][1]);
+        } else if (distance <= 50) {
+            totalCost = cost[payloadIndex][0] + (10 * cost[payloadIndex][1]) + ((distance - 30) * cost[payloadIndex][2]);
+        } else if (distance <= 100) {
+            totalCost = cost[payloadIndex][0] + (10 * cost[payloadIndex][1]) + (20 * cost[payloadIndex][2]) + ((distance - 50) * cost[payloadIndex][3]);
+        } else {
+            totalCost = cost[payloadIndex][0] + (10 * cost[payloadIndex][1]) + (20 * cost[payloadIndex][2]) + (50 * cost[payloadIndex][3]) + ((distance - 100) * cost[payloadIndex][4]);
+        }
             // Hiển thị khoảng cách và cước phí dự kiến
             document.getElementById('result').textContent = `Khoảng cách: ${distance.toFixed(2)} km. Cước phí dự kiến: ${totalCost.toLocaleString('vi-VN')} VND (Cước phí thực tế liên hệ để cung cấp thêm thông tin về địa chỉ và tính toán chi tiết)`;
 
