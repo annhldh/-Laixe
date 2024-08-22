@@ -60,20 +60,7 @@ table
     background-repeat: no-repeat; /* Ngăn không cho lặp lại ảnh nền */
     background-position: center; /* Đặt ảnh nền ở giữa */
 }
-.right-content img
-{
-        padding:0;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        max-width: 250px;
-        background-size: cover;
-        background-position: center;
-        clip-path: polygon(40% 0%, 100% 0%, 100% 100%, 0% 100%); /* Cắt hình ảnh để lấp đầy phần màu xanh */
 
-}
 
 .icon
 {
